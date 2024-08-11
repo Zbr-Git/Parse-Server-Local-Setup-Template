@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Parse App</title>
+  <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+  <script>
+    Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
+    Parse.serverURL = 'http://localhost:1337/parse';
+
+    function saveObject() {
+      const TestObject = Parse.Object.extend("TestObject");
+      const testObject = new TestObject();
+      testObject.set("foo", "bar");
+      testObject.save()
+        .then((object) => {
+          alert('Object saved with objectId: ' + object.id);
+        })
+        .catch((error) => {
+          alert('Error saving object: ' + error.message);
+        });
+    }
+  </script>
+</head>
+<body>
+  <h1>My Parse App</h1>
+  <button onclick="saveObject()">Save Object</button>
+</body>
+</html>
